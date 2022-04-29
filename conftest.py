@@ -21,9 +21,11 @@ def browser(request):
     if browser_name == 'chrome':
         print('start Chrome browser for test...')
         browser = webdriver.Chrome()
+        browser.implicitly_wait(3)
     elif browser_name == 'firefox':
         print('start Firefox browser for test...')
         browser = webdriver.Firefox()
+        browser.implicitly_wait(3)
     yield browser
     print("quit browser")
     browser.quit()
