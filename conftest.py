@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
     parser.addoption('--city', action='store', default='monchegorsk', help='Choose city: dudinka, monchegorsk...')
+    parser.addoption('--browser_name', action='store', default='chrome', help='Choose browser: chrome or firefox...')
 
 
 @pytest.fixture()
@@ -15,8 +16,14 @@ def get_city(request):
 
 @pytest.fixture()
 def browser(request):
-    options = Options()
-    browser = webdriver.Chrome(options=options)
+    browser_name = request.config.getoption('browser_name')
+    browser = None
+    if browser_name == 'chrome':
+        print('start Chrome browser for test...')
+        browser = webdriver.Chrome()
+    elif browser_name == 'firefox':
+        print('start Firefox browser for test...')
+        browser = webdriver.Firefox()
     yield browser
     print("quit browser")
     browser.quit()
