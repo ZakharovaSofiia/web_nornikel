@@ -1,5 +1,3 @@
-from selenium import webdriver
-
 import allure
 from pages.services_page import ServicesPage
 

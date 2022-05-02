@@ -15,17 +15,19 @@ def get_city(request):
 
 @pytest.fixture()
 def browser(request):
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--start-maximized')
     browser_name = request.config.getoption('browser_name')
     browser = None
     if browser_name == 'chrome':
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--start-maximized')
         print('start Chrome browser for test...')
         browser = webdriver.Chrome(options=chrome_options)
         browser.implicitly_wait(3)
     elif browser_name == 'firefox':
+        firefox_options = webdriver.FirefoxOptions()
+        firefox_options.add_argument('--start-maximized')
         print('start Firefox browser for test...')
-        browser = webdriver.Firefox()
+        browser = webdriver.Firefox(options=firefox_options)
         browser.implicitly_wait(3)
     yield browser
     print("quit browser")
