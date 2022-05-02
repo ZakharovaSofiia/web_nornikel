@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
@@ -16,11 +15,13 @@ def get_city(request):
 
 @pytest.fixture()
 def browser(request):
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--start-maximized')
     browser_name = request.config.getoption('browser_name')
     browser = None
     if browser_name == 'chrome':
         print('start Chrome browser for test...')
-        browser = webdriver.Chrome()
+        browser = webdriver.Chrome(options=chrome_options)
         browser.implicitly_wait(3)
     elif browser_name == 'firefox':
         print('start Firefox browser for test...')
