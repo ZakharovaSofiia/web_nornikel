@@ -1,4 +1,5 @@
 import allure
+import time
 from pages.services_page import ServicesPage
 
 
@@ -9,3 +10,14 @@ def test_guest_can_go_to_services_page(browser, get_city):
     services_page.open()
     services_page.go_to_the_services_page()
     services_page.should_be_services_page()
+
+
+@allure.title('Проверка перехода в категорию путешествия')
+def test_guest_can_go_to_travel_category(browser, get_city):
+    link = f'https://{get_city}.city.online'
+    services_page = ServicesPage(browser, link)
+    services_page.open()
+    services_page.go_to_the_services_page()
+    services_page.go_to_travel_category()
+    services_page.should_be_travel_content_is_correct()
+
