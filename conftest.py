@@ -1,4 +1,6 @@
+import allure
 import pytest
+from pages.base_page import BasePage
 from selenium import webdriver
 
 
@@ -32,3 +34,13 @@ def browser(request):
     yield browser
     print("quit browser")
     browser.quit()
+
+
+def pytest_exception_interact():
+    from pprint import pformat
+    allure.attach(webdriver.Chrome().get_screenshot_as_png(), name='failure-screenshot',
+                  attachment_type=allure.attachment_type.PNG)
+    allure.attach(pformat(webdriver.Chrome().get_log('browser')), name='js-console-log',
+                  attachment_type=allure.attachment_type.TEXT)
+    allure.attach(pformat(webdriver.Chrome().get_log('driver')), name='driver-log',
+                  attachment_type=allure.attachment_type.TEXT)
