@@ -26,20 +26,27 @@ class ServicesPage(BasePage):
         self._card_title_creativity_training = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-54"]')
         self._card_title_webinars = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-25"]')
         self._card_title_distance_education = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-5"]')
-        self._card_title_professional_development = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-28"]')
-        self._card_title_professional_retraining = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-6"]')
+        self._card_title_professional_development = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-28"]')
+        self._card_title_professional_retraining = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-6"]')
         self._card_title_career_advice = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-58"]')
         self._card_title_crowdfunding = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-43"]')
         self._card_title_job = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-22"]')
-        self._card_title_selection_psychologist = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-61"]')
+        self._card_title_selection_psychologist = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-61"]')
         self._card_title_nutritionist_online = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-50"]')
-        self._card_title_consultations_of_doctors = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-4"]')
+        self._card_title_consultations_of_doctors = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-4"]')
         self._card_title_health_check = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-51"]')
-        self._card_title_promotions_and_discounts = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-49"]')
-        self._card_title_ecology_and_volunteering = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-34"]')
+        self._card_title_promotions_and_discounts = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-49"]')
+        self._card_title_ecology_and_volunteering = (
+        By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-34"]')
         self._card_title_aggregator = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-71"]')
         self._card_title_payments = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-8"]')
         self._card_title_private_specialists = (By.CSS_SELECTOR, '[data-testid="service-page-service-card-title-47"]')
+        self._promotions_page = (By.XPATH, "//h3[text()='Акции']")
 
     @allure.step('Переход на странице услуг в категорию карьера')
     def go_to_career_category(self):
@@ -64,6 +71,10 @@ class ServicesPage(BasePage):
     @allure.step('Переход на страницу услуг в категорию другое')
     def go_to_other_category(self):
         self.browser.find_elements(*self._category_other)[1].click()
+
+    @allure.step('Переход в "Акции и скидки" на странице услуг в категории город')
+    def go_to_promotions_and_discounts(self):
+        self.browser.find_element(*self._card_title_promotions_and_discounts).click()
 
     @allure.step('Переход на страницу услуг')
     def go_to_the_services_page(self):
@@ -103,7 +114,8 @@ class ServicesPage(BasePage):
             'Не корректный текст в разделе дистанционное образование'
         assert self.browser.find_element(*self._card_title_professional_development).text == 'Повышение квалификации', \
             'Не корректный текст в разделе повышение квалификации'
-        assert self.browser.find_element(*self._card_title_professional_retraining).text == 'Профессиональная переподготовка', \
+        assert self.browser.find_element(
+            *self._card_title_professional_retraining).text == 'Профессиональная переподготовка', \
             'Не корректный текст в разделе профессиональная переподготовка'
 
     @allure.step('Проверка корректности содержимого во вкладке развлечения')
@@ -134,6 +146,11 @@ class ServicesPage(BasePage):
             'Не корректный текст в разделе Платежи'
         assert self.browser.find_element(*self._card_title_private_specialists).text == 'Частные специалисты', \
             'Не корректный текст в разделе Частные специалисты'
+
+    @allure.step('Проверка корректности содержимого в "Акциях и скидках"')
+    def should_be_promotions_and_discounts_content_is_correct(self):
+        assert self.browser.find_element(*self._promotions_page).text == 'Акции', \
+            'Не корректный текст в Акциях и скидках'
 
     @allure.step('Проверка открытия страницы со списком услуг')
     def should_be_services_page(self):

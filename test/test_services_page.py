@@ -62,6 +62,17 @@ def test_guest_can_go_to_other(browser, get_city):
     services_page.should_be_other_content_is_correct()
 
 
+@allure.title('Проверка перехода в "Акции и скидки" категории город')
+def test_guest_can_go_to_promotions_and_discounts(browser, get_city):
+    link = f'https://{get_city}.city.online'
+    services_page = ServicesPage(browser, link)
+    services_page.open()
+    services_page.go_to_the_services_page()
+    services_page.go_to_city_category()
+    services_page.go_to_promotions_and_discounts()
+    services_page.should_be_promotions_and_discounts_content_is_correct()
+
+
 @allure.title('Проверка перехода на страницу услуг')
 def test_guest_can_go_to_services_page(browser, get_city):
     link = f'https://{get_city}.city.online'
