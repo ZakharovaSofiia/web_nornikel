@@ -50,6 +50,7 @@ class ServicesPage(BasePage):
 
     @allure.step('Переход на странице услуг в категорию карьера')
     def go_to_career_category(self):
+        self.wait_element_to_be_clickable(*self._category_career)
         self.browser.find_elements(*self._category_career)[1].click()
 
     @allure.step('Переход на странице услуг в категорию город')
@@ -66,10 +67,12 @@ class ServicesPage(BasePage):
 
     @allure.step('Переход на страницу услуг в категорию здоровье')
     def go_to_health_category(self):
+        self.wait_element_to_be_clickable(*self._category_health)
         self.browser.find_elements(*self._category_health)[1].click()
 
     @allure.step('Переход на страницу услуг в категорию другое')
     def go_to_other_category(self):
+        self.wait_element_to_be_clickable(*self._category_other)
         self.browser.find_elements(*self._category_other)[1].click()
 
     @allure.step('Переход в "Акции и скидки" на странице услуг в категории город')
@@ -78,6 +81,7 @@ class ServicesPage(BasePage):
 
     @allure.step('Переход на страницу услуг')
     def go_to_the_services_page(self):
+        self.wait_element_to_be_clickable(*self._link_services)
         self.browser.find_element(*self._link_services).click()
 
     @allure.step('Переход на странице услуг в категорию путешествия')

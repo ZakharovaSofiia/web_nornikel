@@ -1,5 +1,7 @@
 import allure
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
@@ -23,3 +25,6 @@ class BasePage:
             body=self.browser.driver.get_screenshot_as_png(),
             attachment_type=allure.attachment_type.PNG
         )
+
+    def wait_element_to_be_clickable(self, how, what):
+        WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((how, what)))
