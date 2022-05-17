@@ -2,7 +2,7 @@ import allure
 from pages.events_page import EventsPage
 
 
-@allure.title('Проверка перехода в категорию Афиша')
+@allure.title('Проверка перехода на страницу Афиша')
 def test_guest_can_go_to_events_page(browser, get_city):
     link = f'https://{get_city}.city.online'
     events_page = EventsPage(browser, link)
