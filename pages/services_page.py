@@ -55,14 +55,17 @@ class ServicesPage(BasePage):
 
     @allure.step('Переход на странице услуг в категорию город')
     def go_to_city_category(self):
+        self.wait_element_to_be_clickable(*self._category_city)
         self.browser.find_elements(*self._category_city)[1].click()
 
     @allure.step('Переход на странице услуг в категорию образование')
     def go_to_education_category(self):
+        self.wait_element_to_be_clickable(*self._category_education)
         self.browser.find_elements(*self._category_education)[1].click()
 
     @allure.step('Переход на странице услуг в категорию развлечения')
     def go_to_entertainment_category(self):
+        self.wait_element_to_be_clickable(*self._category_entertainment)
         self.browser.find_elements(*self._category_entertainment)[1].click()
 
     @allure.step('Переход на страницу услуг в категорию здоровье')
@@ -86,10 +89,12 @@ class ServicesPage(BasePage):
 
     @allure.step('Переход на странице услуг в категорию путешествия')
     def go_to_travel_category(self):
+        self.wait_element_to_be_clickable(*self._category_travel)
         self.browser.find_elements(*self._category_travel)[1].click()
 
     @allure.step('Переход на странице услуг в категорию транспорт')
     def go_to_transport_category(self):
+        self.wait_element_to_be_clickable(*self._category_transport)
         self.browser.find_elements(*self._category_transport)[1].click()
 
     @allure.step('Проверка корректности содержимого во вкладке карьера')

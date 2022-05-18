@@ -12,7 +12,7 @@ class LoginPage(BasePage):
         self._email_input = (By.CSS_SELECTOR, '[data-testid="registration-by-email-input"]')
         self._email_password_input = (By.CSS_SELECTOR, '[data-testid="registration-by-email-password-input"]')
         self._confirm_email_password_input = (By.CSS_SELECTOR, '[data-testid="registration-by-email-confirm-password-input"]')
-        self._registration_agreement = (By.CSS_SELECTOR, '[class="css-1t4dsq5 e1is4j843"]')
+        self._registration_agreement = (By.XPATH, '//*[@id="credential-modal-form"]/div[4]/div/label/input')
         self._registration_button = (By.CSS_SELECTOR, '[data-testid="registration-button"]')
         self._recaptcha_form = (By.CSS_SELECTOR, '#recaptcha-token')
         self._confirm_registration_code = (By.CSS_SELECTOR, '[data-testid = "code-confirmation-prompt"]')
