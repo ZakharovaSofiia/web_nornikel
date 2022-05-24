@@ -26,5 +26,9 @@ class BasePage:
             attachment_type=allure.attachment_type.PNG
         )
 
+    def _scroll_to(self, how, what):
+        element = self.browser.find_element(how, what)
+        self.browser.execute_script("return arguments[0].scrollIntoView(true);", element)
+
     def wait_element_to_be_clickable(self, how, what):
         WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((how, what)))
