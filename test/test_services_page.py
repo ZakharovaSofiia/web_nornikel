@@ -1,4 +1,6 @@
 import allure
+import pytest
+
 from pages.services_page import ServicesPage
 
 
@@ -52,6 +54,7 @@ def test_guest_can_go_to_health(browser, get_city):
     services_page.should_be_health_content_is_correct()
 
 
+@pytest.mark.skip
 @allure.title('Проверка перехода в категорию другое')
 def test_guest_can_go_to_other(browser, get_city):
     link = f'https://{get_city}.city.online'
